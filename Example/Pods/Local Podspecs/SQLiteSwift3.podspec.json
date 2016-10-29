@@ -1,0 +1,26 @@
+{
+  "name": "SQLiteSwift3",
+  "version": "0.1.0",
+  "summary": "A short description of SQLiteSwift3.",
+  "description": "A short description of SQLiteSwift3 by jaki.",
+  "homepage": "https://github.com/ZYHshao/SQLiteSwift3.git",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "张益珲": "316045346@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/ZYHshao/SQLiteSwift3.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SQLiteSwift3/Classes/**/*",
+  "frameworks": [
+    "Foundation",
+    "libsqlite3"
+  ]
+}

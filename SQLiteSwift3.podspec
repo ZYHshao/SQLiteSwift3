@@ -18,14 +18,14 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+A short description of SQLiteSwift3 by jaki.
                        DESC
 
-  s.homepage         = 'https://github.com/<GITHUB_USERNAME>/SQLiteSwift3'
+  s.homepage         = 'https://github.com/ZYHshao/SQLiteSwift3.git'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { '张益珲' => 'jaki.zhang@vipshop.com' }
-  s.source           = { :git => 'https://github.com/<GITHUB_USERNAME>/SQLiteSwift3.git', :tag => s.version.to_s }
+  s.author           = { '张益珲' => '316045346@qq.com' }
+  s.source           = { :git => 'https://github.com/ZYHshao/SQLiteSwift3.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
@@ -37,6 +37,6 @@ TODO: Add long description of the pod here.
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.frameworks = 'Foundation', 'libsqlite3'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
