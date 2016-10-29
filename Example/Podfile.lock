@@ -1,0 +1,16 @@
+PODS:
+  - SQLiteSwift3 (0.1.1)
+
+DEPENDENCIES:
+  - SQLiteSwift3 (from `../`)
+
+EXTERNAL SOURCES:
+  SQLiteSwift3:
+    :path: ../
+
+SPEC CHECKSUMS:
+  SQLiteSwift3: eaff935ee4927b0ec68c8094d0a8b57ed52c4a15
+
+PODFILE CHECKSUM: d4fdbda7d6a798b003ee6a1acf55658fa4533343
+
+COCOAPODS: 1.0.1
