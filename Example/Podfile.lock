@@ -1,5 +1,5 @@
 PODS:
-  - SQLiteSwift3 (0.1.0)
+  - SQLiteSwift3 (0.1.1)
 
 DEPENDENCIES:
   - SQLiteSwift3 (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  SQLiteSwift3: 9daac88321247f96f5c64a78c67a3e2be9e6eeda
+  SQLiteSwift3: eaff935ee4927b0ec68c8094d0a8b57ed52c4a15
 
 PODFILE CHECKSUM: d4fdbda7d6a798b003ee6a1acf55658fa4533343
 

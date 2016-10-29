@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SQLiteSwift3'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'A short description of SQLiteSwift3.'
 
 # This description is used to generate tags and improve search results.
@@ -37,6 +37,7 @@ A short description of SQLiteSwift3 by jaki.
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.frameworks = 'Foundation', 'libsqlite3'
+  s.frameworks = 'Foundation'
+  s.libraries = 'sqlite3.0'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

@@ -1,6 +1,6 @@
 {
   "name": "SQLiteSwift3",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "A short description of SQLiteSwift3.",
   "description": "A short description of SQLiteSwift3 by jaki.",
   "homepage": "https://github.com/ZYHshao/SQLiteSwift3.git",
@@ -13,14 +13,12 @@
   },
   "source": {
     "git": "https://github.com/ZYHshao/SQLiteSwift3.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "8.0"
   },
   "source_files": "SQLiteSwift3/Classes/**/*",
-  "frameworks": [
-    "Foundation",
-    "libsqlite3"
-  ]
+  "frameworks": "Foundation",
+  "libraries": "sqlite3.0"
 }
