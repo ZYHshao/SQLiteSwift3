@@ -8,14 +8,29 @@
 
 import UIKit
 import SQLiteSwift3
+
 class ViewController: UIViewController {
 
     var sqliteHander:SQLiteSwift3?
+    
     override func viewDidLoad() {
-       
+        let obj = SQLiteObject()
+    }
+    
+    
+    
+    func testOBJSave()  {
         
     }
     
+    func testGetTableName()  {
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+        let file = path! + "/newDataBase.sqlite"
+        print(file)
+        sqliteHander = SQLiteSwift3.openDB(file)
+        print(sqliteHander!.searchAllTableName())
+        
+    }
     
     func testSelect()  {
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
@@ -84,6 +99,9 @@ class ViewController: UIViewController {
     }
     
     func testCreateTable() {
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+        let file = path! + "/newDataBase.sqlite"
+        sqliteHander = SQLiteSwift3.openDB(file)
         let key1 = SQLiteKeyObject()
         key1.name = "number"
         key1.fieldType = INTEGER
@@ -100,7 +118,7 @@ class ViewController: UIViewController {
         key3.fieldType = INTEGER
         key3.modificationType=CHECK
         key3.condition="count>30"
-        print(sqliteHander?.createTable(withName: "school", keys: [key1,key2,key3]))
+        print(sqliteHander?.createTable(withName: "chool", keys: [key1,key2,key3]))
     }
 
     

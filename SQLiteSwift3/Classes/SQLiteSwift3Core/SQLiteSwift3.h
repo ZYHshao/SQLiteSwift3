@@ -62,6 +62,14 @@ typedef enum {
 
 
 /**
+    query all table names in current SQL
+
+ @return all table names
+ */
+-(nullable NSArray<NSString *> *)searchAllTableName;
+
+
+/**
     insert a data into table.The keyValueDic should contain key-value info about what you want to setting the data.
     tip: the number type,timestamptype should uss NSNumber ,text should uss NSSting 
         other type current not supportrd in this method.

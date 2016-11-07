@@ -24,7 +24,7 @@ pod "SQLiteSwift3"
 
 ## Author
 
-张益珲, jaki.zhang@vipshop.com
+张益珲, 316045346@qq.com
 
 ## License
 

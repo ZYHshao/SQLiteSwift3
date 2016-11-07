@@ -10,4 +10,5 @@
 #define SQLiteSwift3_Bridge_header_h
 #import "SQLiteSwift3.h"
 
+
 #endif /* SQLiteSwift3_Bridge_header_h */

@@ -1,7 +1,7 @@
 use_frameworks!
 
 target 'SQLiteSwift3_Example' do
-  pod 'SQLiteSwift3', :path => '../'
+  pod 'SQLiteSwift3', :path => ‘../’
 
   target 'SQLiteSwift3_Tests' do
     inherit! :search_paths

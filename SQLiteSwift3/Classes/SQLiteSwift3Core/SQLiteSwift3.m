@@ -68,6 +68,19 @@ return NO;
     CHECK_END_REQUREMENT(SERVICE_NOT_RUNING_TIP_CODE)
 }
 
+-(NSArray<NSString *> *)searchAllTableName{
+    CHECK_BEGIN_REQURIMENT([self serviceRuning])
+    NSMutableArray * mutableArray = [NSMutableArray array];
+    if([self getAllTableNamesWriteTo:mutableArray]){
+        return [mutableArray copy];
+    }else{
+        NSString * info = [NSString stringWithFormat:@"the search of table name fail"];
+        LOG_FORMAT(NSStringFromClass(self.class), info);
+        return nil;
+    }
+    CHECK_END_REQUREMENT(SERVICE_NOT_RUNING_TIP_CODE)
+}
+
 -(BOOL)insertData:(NSDictionary<NSString *,id> *)keyValueDic intoTable:(nonnull NSString *)tableName{
     CHECK_BEGIN_REQURIMENT([self serviceRuning])
     if (!keyValueDic) {
@@ -248,7 +261,7 @@ return NO;
                     }
                 }
             }
-           
+            
             //begin query sql
             NSMutableArray * resultArray = [NSMutableArray array];
             if ([self runQuertSQL:sqlString selectField:request.fieldArray inTable:tableName  writeTo:resultArray]) {
@@ -415,6 +428,30 @@ return NO;
         return YES;
     }
 }
+
+
+/**
+ run table name Query command of sql
+ 
+ @param resultArray result
+ @return wether success
+ */
+-(BOOL)getAllTableNamesWriteTo:(NSMutableArray *)resultArray{
+    sqlite3_stmt *statement;
+    NSString * getTableInfo = @"select * from sqlite_master where type='table' order by name;";
+    int result = sqlite3_prepare_v2(sqlite, [getTableInfo UTF8String], -1, &statement, nil);
+    if (!result==SQLITE_OK) {
+        return NO;
+    }
+    while (sqlite3_step(statement) == SQLITE_ROW) {
+        NSString *nameData = [NSString stringWithUTF8String:sqlite3_column_text(statement, 1)];
+        [resultArray addObject:nameData];
+    }
+    sqlite3_finalize(statement);
+    statement = nil;
+    return YES;
+}
+
 
 /**
  Organize Field to sql String
