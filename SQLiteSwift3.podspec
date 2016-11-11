@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SQLiteSwift3'
-  s.version          = '0.1.1'
+  s.version          = '1.2.1'
   s.summary          = 'A short description of SQLiteSwift3.'
 
 # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ A short description of SQLiteSwift3 by jaki.
   s.homepage         = 'https://github.com/ZYHshao/SQLiteSwift3.git'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Jaki' => '316045346@qq.com' }
+  s.author           = { '珲少' => '316045346@qq.com' }
   s.source           = { :git => 'https://github.com/ZYHshao/SQLiteSwift3.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
