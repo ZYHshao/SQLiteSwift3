@@ -28,7 +28,7 @@ return NO;
 {
     self = [super init];
     if (self) {
-        
+     
     }
     return self;
 }
@@ -418,6 +418,10 @@ return NO;
                     [dataDic setObject:value forKey:fieldsArray[i]];
                 }else if ([typeString isEqualToString:@"timestamp"]){
                     NSNumber * value = [NSNumber numberWithLongLong:sqlite3_column_int64(stmt, i)];
+                    [dataDic setObject:value forKey:fieldsArray[i]];
+                }else{
+                    char * cString =(char*)sqlite3_column_text(stmt, i);
+                    NSString * value = [NSString stringWithCString:cString?cString:"NULL" encoding:NSUTF8StringEncoding];
                     [dataDic setObject:value forKey:fieldsArray[i]];
                 }
             }

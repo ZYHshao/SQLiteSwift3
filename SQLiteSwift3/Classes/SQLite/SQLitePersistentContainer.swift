@@ -12,11 +12,11 @@ func printError(_ error:String){
     print("SQLiteSwift3======LOG=======\nSQLitePersistentContainer:%@",error)
 }
 
-class SQLitePersistentContainer: NSObject {
+public class SQLitePersistentContainer: NSObject {
     
     var sqlHandle:SQLiteSwift3?
     let sqlRootTableName = "jaki_sqlite_root"
-    override init() {
+    public override init() {
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
         let file = path! + "/SQLiteSwift3_base_v1.sqlite"
         print(file)
@@ -31,17 +31,13 @@ class SQLitePersistentContainer: NSObject {
     ///   - object: must be SQLiteProtocol data
     ///   - key: user key
     /// - Returns:Whether successful
-    func saveObject(_ object:SQLiteProtocol, key:String) -> Bool {
+    public func saveObject(_ object:SQLiteProtocol, key:String) -> Bool {
         if !checkExistRootTable() {
              self.createRootTable()
         }
         let result =  sqlHandle?.insertData([rootTableObjectName:object.objectClassName(),rootTableUserKey:key], intoTable: sqlRootTableName)
-        if result != nil && !result!  {
-            printError("save object key \(key) in root table , it have exit or fail")
-        }else{
             //save data
-            
-        }
+        self.saveData(data: object)
         return true
     }
     
@@ -74,13 +70,78 @@ class SQLitePersistentContainer: NSObject {
     ///
     /// - Returns: check result
     func checkExistRootTable() ->Bool {
+        return checkExisNormalTable(tableName: sqlRootTableName)
+    }
+    
+    func checkExisNormalTable(tableName:String) -> Bool {
         let names = sqlHandle?.searchAllTableName()
         var exist = false
         names?.forEach(){ (elment) in
-            if elment == sqlRootTableName {
+            if elment == tableName {
                 exist = true
             }
         }
         return exist
+    }
+    
+    func saveData(data:SQLiteProtocol) -> Bool {
+        //create table
+        let className = data.objectClassName()
+        if !checkExisNormalTable(tableName: className) {
+            self.createTable(data: data)
+        }
+        sqlHandle?.insertData(data.toDictionary(), intoTable: className)
+        
+        return true
+    }
+    
+    let NoneINOUT_KEY = "jaki_NoneINOUT_KEY"
+    func createTable(data:SQLiteProtocol){
+        if sqlHandle != nil {
+            var keyArray = Array<SQLiteKeyObject>()
+            let Key1 = SQLiteKeyObject()
+            Key1.name = "innerKey"
+            Key1.fieldType = INTEGER
+            Key1.modificationType = PRIMARY_KEY
+            let Key2 = SQLiteKeyObject()
+            Key2.name = "outerKeys"
+            Key2.fieldType = INTEGER
+            let Key3 = SQLiteKeyObject()
+            Key3.name = "outerNames"
+            Key3.fieldType = TEXT
+            Key3.modificationType = DEFAULT
+            Key3.condition = NoneINOUT_KEY
+            Key3.tSize = 30
+            let Key4 = SQLiteKeyObject()
+            Key4.name = "innerName"
+            Key4.fieldType = TEXT
+            Key4.modificationType = DEFAULT
+            Key4.condition = NoneINOUT_KEY
+            Key4.tSize = 30
+            keyArray.append(Key1)
+            keyArray.append(Key2)
+            keyArray.append(Key3)
+            keyArray.append(Key4)
+            for field in data.objectFieldName() {
+                let Key = SQLiteKeyObject()
+                Key.name = field.key
+                Key.fieldType = getFieldSqlType(type: field.value)
+                keyArray.append(Key)
+            }
+            if(!sqlHandle!.createTable(withName: data.objectClassName(), keys:keyArray)){
+                printError("the \(data.objectClassName()) table have exist or create fail")
+            }
+        }
+    }
+    func getFieldSqlType(type:String) -> SQLiteFieldType {
+        switch type {
+        case "Int":
+            return INTEGER
+        case "String":
+            return TEXT
+        default:
+            return TEXT
+            break
+        }
     }
 }

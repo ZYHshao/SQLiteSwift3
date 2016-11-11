@@ -8,6 +8,6 @@
 
 import UIKit
 
-class SQLiteObject: NSObject,SQLiteProtocol {
+open class SQLiteObject: NSObject,SQLiteProtocol {
 
 }

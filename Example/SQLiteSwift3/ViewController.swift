@@ -8,13 +8,16 @@
 
 import UIKit
 import SQLiteSwift3
-
 class ViewController: UIViewController {
 
     var sqliteHander:SQLiteSwift3?
-    
+    var sqlContainer:SQLitePersistentContainer?
     override func viewDidLoad() {
-        let obj = SQLiteObject()
+        sqlContainer = SQLitePersistentContainer()
+        let obj = MyClass()
+        obj.name = "珲少"
+        obj.age = 24
+        sqlContainer?.saveObject(obj, key: "Object2")
     }
     
     
@@ -28,7 +31,7 @@ class ViewController: UIViewController {
         let file = path! + "/newDataBase.sqlite"
         print(file)
         sqliteHander = SQLiteSwift3.openDB(file)
-        print(sqliteHander!.searchAllTableName())
+        print(sqliteHander!.searchAllTableName()!)
         
     }
     
@@ -45,7 +48,7 @@ class ViewController: UIViewController {
         request.offset = 1
         sqliteHander?.searchData(withReeuest: request, inTable: "cschool", searchFinish: { (success, result) in
             print(success)
-            print(result)
+            print(result!)
         })
     }
     
